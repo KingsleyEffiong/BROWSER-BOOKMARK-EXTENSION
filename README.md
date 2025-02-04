@@ -37,7 +37,6 @@ Double-click to open a URL in a new tab.
 Click the trash icon next to a URL to delete it from your list and local storage.
 Display notifications for copying or deleting URLs.
 
-
 Contributing
 Fork the repository.
 Create a new branch (git checkout -b feature-name).

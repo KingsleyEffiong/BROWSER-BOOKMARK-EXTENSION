@@ -17,9 +17,14 @@ function App() {
     port.onMessage.addListener((message) => {
       console.log("Received message via port:", message);
       if (message.type === "NEW_URL_VISITED") {
-        setCurrentUrl(message.url);
+        if (message.url === "chrome://extensions/") {
+          setCurrentUrl('');
+        } else {
+          setCurrentUrl(message.name);
+        }
       }
     });
+
 
     // Load saved URLs
     chrome.storage.local.get("savedUrls", (data) => {
@@ -111,10 +116,11 @@ function App() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-1">
+        <img src="" alt="" />
         <h1 className="text-4xl font-bold headingFont mb-4">URLS EASY BOOKMARK</h1>
-        <div className="w-full py-3 px-1 flex flex-ROW justify-between items-center">
+        <div className="w-full py-3 px-1 flex flex-row justify-between items-center">
 
-          <p className="text-lg">{currentUrl ? `Current URL: ${currentUrl.slice(0, 15)}.....` : "No URL detected"}</p>
+          <p className="text-sm">{currentUrl ? `Current URL: ${currentUrl.slice(0, 15)}.....` : "No URL detected"}</p>
           {currentUrl && <button
             onClick={saveUrl}
             type="button"
@@ -128,7 +134,7 @@ function App() {
         <h2 className="text-2xl text-left font-bold headingFont mb-4">{savedUrl.length === 0 ? '' : "YOUR SAVED URLS"}</h2>
         {savedUrl.length > 0 ? (
           <ul className="flex flex-col gap-2">
-            {currentItems.map((url, index) => (
+            {currentItems.slice().reverse().map((url, index) => (
               <li
                 key={index}
                 onClick={() => handleCopy(url)}
@@ -150,7 +156,7 @@ function App() {
             ))}
           </ul>
         ) : (
-          <p className="text-lg">No saved URLs yet.</p>
+          <p className="text-lg text-left">No saved URLs yet.</p>
         )}
         {savedUrl.length > 5 && <Stack spacing={2}>
           <Pagination

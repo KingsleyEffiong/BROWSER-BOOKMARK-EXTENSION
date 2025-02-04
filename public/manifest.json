@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Saved Url Visited",
+  "name": "Urls Easy Bookmark",
   "version": "1.0.0",
-  "description": "Urls Visited ",
+  "description": "A Chrome extension to manage URLs with functionalities like copying, opening URLs in new tabs, deleting, and storing them locally. This extension also features notifications for actions like copying or deleting URLs and provides a simple user interface for interacting with saved URLs.",
   "icons": {
-    "48": "image/hidden websites.png",
-    "128": "image/post 1.png"
+    "48": "image/Black White Bold Modern Studio Logo.png",
+    "128": "image/Black White Bold Modern Studio Logo.png"
   },
   "action": {
     "default_popup": "index.html"
