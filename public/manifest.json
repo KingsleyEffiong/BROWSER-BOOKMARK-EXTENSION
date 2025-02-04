@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Saved Url Visited",
+  "version": "1.0.0",
+  "description": "Urls Visited ",
+  "icons": {
+    "48": "image/hidden websites.png",
+    "128": "image/post 1.png"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "chrome.js"
+  },
+  "permissions": ["activeTab", "scripting", "storage", "tabs", "notifications"],
+  "content_scripts": [
+    {
+      "js": ["script.js"],
+      "matches": ["<all_urls>"],
+      "css": ["app.css"]
+    }
+  ]
+}

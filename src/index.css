@@ -1,0 +1,23 @@
+@import "tailwindcss";
+/* @font-face for custom fonts */
+@font-face {
+  font-family: "RubikVinyl";
+  src: url("./assets/RubikVinyl-Regular.ttf") format("truetype"),
+    url("./assets/Nunito-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply the first custom font to headings */
+.headingFont {
+  font-family: "RubikVinyl", sans-serif;
+}
+
+/* Apply the second custom font to the body of every tag */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif; /* Second custom font applied here */
+  overflow-x: hidden;
+}
