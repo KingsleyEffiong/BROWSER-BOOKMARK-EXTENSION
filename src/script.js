@@ -95,14 +95,15 @@ document.getElementById("closePopup").addEventListener("click", function () {
 
 // === Chrome Runtime Connection ===
 const port = chrome.runtime.connect({ name: "urlBookmarker" });
-
+let messageUrl;
 port.onMessage.addListener((message) => {
   console.log("Received message via port:", message);
   if (message.type === "NEW_URL_VISITED") {
-    document.getElementById("popupText").textContent = `${message.name.slice(
+    document.getElementById("popupText").textContent = `${message.url.slice(
       0,
       25
     )}......`;
+    messageUrl = message.url
     // document.getElementById("url").textContent = `${message.url}`;
     // const url = message.url;
     container.style.display = "block";
@@ -113,7 +114,7 @@ port.onMessage.addListener((message) => {
 });
 
 async function saveUrl() {
-  const currentUrl = document.getElementById("popupText").textContent;
+  const currentUrl = messageUrl;
   if (!currentUrl) return;
 
   try {
