@@ -10,8 +10,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
   const itemsPerPage = 5; // Number of items per page
   let timeout;
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const port = chrome.runtime.connect({ name: "urlBookmarker" });
 
     port.onMessage.addListener((message) => {
@@ -31,8 +33,10 @@ function App() {
       let urls = data.savedUrls || [];
       setSavedUrl(urls); // Corrected this line
     });
+    setLoading(false)
 
     return () => port.disconnect();
+
   }, []);
 
   async function saveUrl() {
@@ -132,6 +136,7 @@ function App() {
 
         {/* Displaying saved URLs */}
         <h2 className="text-2xl text-left font-bold headingFont mb-4">{savedUrl.length === 0 ? '' : "YOUR SAVED URLS"}</h2>
+        {loading && <p className="text-4xl text-red-800">Loading</p>}
         {savedUrl.length > 0 ? (
           <ul className="flex flex-col gap-2">
             {currentItems.slice().reverse().map((url, index) => (

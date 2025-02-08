@@ -77,8 +77,6 @@ container.innerHTML = `
 // Append popup to page
 document.body.appendChild(container);
 
-// === Event Listeners ===
-
 // Show modal on bookmark click
 bookmark.addEventListener("click", function () {
   container.style.display = "block";
